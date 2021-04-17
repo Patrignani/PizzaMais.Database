@@ -7,3 +7,6 @@
 	FOREIGN KEY ([CustomerId]) REFERENCES [Customer](Id),
 	FOREIGN KEY ([AndressId]) REFERENCES [Andress](Id)
 )
+GO
+CREATE NONCLUSTERED INDEX CustomerAndress_AndressId_CustomerId
+ON [dbo].[CustomerAndress] ([AndressId]) INCLUDE ([CustomerId])

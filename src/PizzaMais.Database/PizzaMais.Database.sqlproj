@@ -73,5 +73,6 @@
     <Build Include="dbo\Tables\UnitMeasurement.sql" />
     <Build Include="script\FirstQaTest.sql" />
     <Build Include="dbo\Proc\usp_GetCustomerOrder.sql" />
+    <Build Include="dbo\Proc\usp_GetFullNumber.sql" />
   </ItemGroup>
 </Project>
