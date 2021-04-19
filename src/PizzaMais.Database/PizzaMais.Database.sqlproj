@@ -63,16 +63,18 @@
     <Folder Include="dbo\Proc" />
   </ItemGroup>
   <ItemGroup>
-    <Build Include="dbo\Tables\Andress.sql" />
-    <Build Include="dbo\Tables\City.sql" />
-    <Build Include="dbo\Tables\Customer.sql" />
-    <Build Include="dbo\Tables\CustomerAndress.sql" />
-    <Build Include="dbo\Tables\CustomerPhone.sql" />
-    <Build Include="dbo\Tables\PaymentType.sql" />
-    <Build Include="dbo\Tables\Phone.sql" />
-    <Build Include="dbo\Tables\UnitMeasurement.sql" />
-    <Build Include="script\FirstQaTest.sql" />
+    <None Include="script\FirstQaTest.sql" />
     <Build Include="dbo\Proc\usp_GetCustomerOrder.sql" />
     <Build Include="dbo\Proc\usp_GetFullNumber.sql" />
+    <Build Include="dbo\Tables\Borda.sql" />
+    <Build Include="dbo\Tables\Cidade.sql" />
+    <Build Include="dbo\Tables\Cliente.sql" />
+    <Build Include="dbo\Tables\ClienteEndereco.sql" />
+    <Build Include="dbo\Tables\ClienteTelefone.sql" />
+    <Build Include="dbo\Tables\Endereco.sql" />
+    <Build Include="dbo\Tables\Ingredient.sql" />
+    <Build Include="dbo\Tables\Telefone.sql" />
+    <Build Include="dbo\Tables\TipoPagamento.sql" />
+    <Build Include="dbo\Tables\UnidadeMedida.sql" />
   </ItemGroup>
 </Project>
