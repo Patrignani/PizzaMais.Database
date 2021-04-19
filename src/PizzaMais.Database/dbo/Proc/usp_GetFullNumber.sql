@@ -4,9 +4,9 @@
 AS
 BEGIN
 	SELECT TOP 8 
-		Number  
+		Numero  
 	FROM 
-		Phone
+		Telefone
 	WHERE 
-		Number LIKE  @value +'%'
+		Numero LIKE  @value +'%'
 END

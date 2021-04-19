@@ -5,30 +5,31 @@
 AS
 BEGIN
 	SELECT TOP 8 
-		C.ID, C.NAME, 
-		CP.PHONEID,
-		P.NUMBER AS NUMBERPHONE, 
-		CA.ANDRESSID,
+		C.Id, 
+		C.Nome, 
+		CP.TelefoneId,
+		P.Numero AS TelefoneNumero, 
+		CA.EnderecoId,
 		A.CEP,
-		A.STREET, 
-		A.DISTRICT,
-		A.NUMBER AS NUMBERANDRESS, 
-		A.COMPLEMENT,
-		A.CITYID,
-		CI.NAME AS CITY   
+		A.Rua, 
+		A.Bairro,
+		A.Numero AS EnderecoNumero, 
+		A.Complemento,
+		A.CidadeId,
+		CI.Nome AS CITY   
 	FROM 
-		CUSTOMER C INNER JOIN CUSTOMERANDRESS CA 
-			ON C.ID = CA.CUSTOMERID
-		INNER JOIN ANDRESS A 
-			ON A.ID = CA.ANDRESSID AND CA.MAIN = 1
-		LEFT JOIN CITY CI 
-			ON CI.ID = A.CITYID
-		INNER JOIN CUSTOMERPHONE CP 
-			ON CP.CUSTOMERID = C.ID
-		INNER JOIN PHONE P 
-			ON P.ID = CP.PHONEID
+		Cliente C INNER JOIN ClienteEndereco CA 
+			ON C.ID = CA.ClienteId
+		INNER JOIN Endereco A 
+			ON A.ID = CA.EnderecoId AND CA.Principal = 1
+		LEFT JOIN Cidade CI 
+			ON CI.ID = A.CidadeId
+		INNER JOIN ClienteTelefone CP 
+			ON CP.ClienteId = C.ID
+		INNER JOIN Telefone P 
+			ON P.ID = CP.TelefoneId
 	WHERE 
-		P.Number LIKE   @value +'%'
+		P.Numero LIKE   @value +'%'
 
 END
 
