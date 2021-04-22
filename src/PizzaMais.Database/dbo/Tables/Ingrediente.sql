@@ -1,4 +1,4 @@
-﻿CREATE TABLE [dbo].[Ingredients]
+﻿CREATE TABLE [dbo].[Ingrediente]
 (
 	[Id] INT NOT NULL IDENTITY(1,1) PRIMARY KEY,
 	[Nome] VARCHAR(80)  NOT NULL,
