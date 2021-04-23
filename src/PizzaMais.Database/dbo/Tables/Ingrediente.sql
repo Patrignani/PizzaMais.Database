@@ -8,3 +8,6 @@
 	[UsuarioIdCriacao] INT NOT NULL,
 	[UsuarioIdAtualizacao] INT NULL
 )
+GO
+CREATE UNIQUE INDEX uidx_nome
+ON [dbo].[Ingrediente] (Nome);

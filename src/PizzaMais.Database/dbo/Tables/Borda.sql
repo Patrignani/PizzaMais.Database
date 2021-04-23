@@ -9,3 +9,6 @@
 	[UsuarioIdCriacao] INT NOT NULL,
 	[UsuarioIdAtualizacao] INT NULL
 )
+GO
+CREATE UNIQUE INDEX uidx_nome
+ON [dbo].[Borda] (Nome, Preco);
