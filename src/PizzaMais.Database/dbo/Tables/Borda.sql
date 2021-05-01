@@ -12,3 +12,6 @@
 GO
 CREATE UNIQUE INDEX uidx_nome
 ON [dbo].[Borda] (Nome, Preco);
+GO
+CREATE UNIQUE INDEX uidx_borda_nome
+ON [dbo].[Borda] (Nome);

@@ -7,8 +7,11 @@
 	[DataAtualizacao] DATETIME NULL,
 	[DataCriacao] DATETIME NOT NULL,
 	[UsuarioIdCriacao] INT NOT NULL,
-	[UsuarioIdAtualizacao] INT NULL
+	[UsuarioIdAtualizacao] INT NULL,
 )
 GO
 CREATE UNIQUE INDEX uidx_nome
 ON [dbo].[UnidadeMedida] (Nome, Sigla);
+GO
+CREATE UNIQUE INDEX uidx_unidade_medida_sigla
+ON [dbo].[UnidadeMedida] (Sigla);
