@@ -78,5 +78,6 @@
   </ItemGroup>
   <ItemGroup>
     <Build Include="dbo\Tables\Ingrediente.sql" />
+    <Build Include="dbo\Tables\Fornecedor.sql" />
   </ItemGroup>
 </Project>
