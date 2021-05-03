@@ -10,3 +10,9 @@
 	[UsuarioIdCriacao] INT NOT NULL,
 	[UsuarioIdAtualizacao] INT NULL
 )
+GO
+CREATE UNIQUE INDEX uidx_fornecedor_nome
+ON [dbo].Fornecedor (Nome);
+GO
+CREATE UNIQUE INDEX uidx_fornecedor_documento
+ON [dbo].Fornecedor (Documento);
