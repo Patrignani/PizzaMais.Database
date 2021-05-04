@@ -1,44 +1,58 @@
 ﻿using FluentMigrator.Runner;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using PizzaMais.Database.Migrador.Migrar;
+using PizzaMais.Database.Migrador.Middleware;
+using Serilog;
 using System;
 
 namespace PizzaMais.Database.Migrador
 {
     class Program
     {
+        public static IConfigurationRoot _configuration;
+
         static void Main(string[] args)
         {
-            var serviceProvider = CreateServices();
+            // Initialize serilog logger
+            Log.Logger = new LoggerConfiguration()
+                 .WriteTo.Console(Serilog.Events.LogEventLevel.Debug)
+                 .MinimumLevel.Debug()
+                 .Enrich.FromLogContext()
+                 .CreateLogger();
 
-            // Put the database update into a scope to ensure
-            // that all resources will be disposed.
-            using (var scope = serviceProvider.CreateScope())
+            Log.Information("Creating service collection");
+            IServiceCollection serviceCollection = new ServiceCollection();
+            _configuration = serviceCollection.ConfigureServices();
+
+            Log.Information("Building service provider");
+            IServiceProvider serviceProvider = serviceCollection.BuildServiceProvider(false);
+
+            try
             {
-                UpdateDatabase(scope.ServiceProvider);
+                Log.Information("Starting Migration");
+                using (var scope = serviceProvider.CreateScope())
+                {
+                    _configuration.InitDataBase();
+                    UpdateDatabase(scope.ServiceProvider);
+                }
+                Log.Information("Ending Migration");
             }
-
-           static IServiceProvider CreateServices()
+            catch (Exception ex)
             {
-                return new ServiceCollection()
-                    .AddFluentMigratorCore()
-                    .ConfigureRunner(rb => rb
-                        .AddPostgres()
-                        .WithGlobalConnectionString("Host=localhost;Port=5432;Username=postgres;Password=masterkey;Database=PizzaMais")
-                        .ScanIn(typeof(VersaoZero).Assembly).For.Migrations()
-                        //.ScanIn(typeof(Versao1).Assembly).For.Migrations()
-                        )
-                    .AddLogging(lb => lb.AddFluentMigratorConsole())
-                    .BuildServiceProvider(false);
+                Log.Fatal(ex, "Error running service");
             }
-            
-
-            static void UpdateDatabase(IServiceProvider serviceProvider)
+            finally
             {
-
-                var runner = serviceProvider.GetRequiredService<IMigrationRunner>();
-                runner.MigrateUp();
+                Log.CloseAndFlush();
             }
+        }
+
+        public static void UpdateDatabase(IServiceProvider serviceProvider)
+        {
+
+            var runner = serviceProvider.GetRequiredService<IMigrationRunner>();
+            runner.MigrateUp();
+           
         }
     }
 }
