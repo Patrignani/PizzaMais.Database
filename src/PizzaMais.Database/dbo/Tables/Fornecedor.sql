@@ -2,7 +2,7 @@
 (
 	[Id] INT NOT NULL IDENTITY(1,1) PRIMARY KEY,
 	[Nome] VARCHAR(80) NOT NULL,
-	[Documento] VARCHAR(14) NOT NULL,
+	[Documento] VARCHAR(20) NOT NULL,
 	[TipoDocumento] SMALLINT,
 	[Ativo] BIT NOT NULL,
 	[DataAtualizacao] DATETIME NULL,
