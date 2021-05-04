@@ -8,7 +8,11 @@ namespace PizzaMais.Database.Migrador.Migrar
     {
         public override void Up()
         {
-            Create.AddFornecedor();   
+            Create
+                .AddFornecedor()
+                .AddBorda()
+                .AddIngrediente()
+                .AddUnidadeMedida();   
         }
 
         public override void Down()
