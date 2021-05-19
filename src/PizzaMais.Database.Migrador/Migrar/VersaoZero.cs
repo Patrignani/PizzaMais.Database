@@ -12,12 +12,17 @@ namespace PizzaMais.Database.Migrador.Migrar
                 .AddFornecedor()
                 .AddBorda()
                 .AddIngrediente()
-                .AddUnidadeMedida();   
+                .AddUnidadeMedida()
+                .AddProdutoRevenda();
         }
 
         public override void Down()
         {
             Delete.Table("Fornecedor");
+            Delete.Table("Borda");
+            Delete.Table("Ingrediente");
+            Delete.Table("UnidadeMedida");
+            Delete.Table("ProdutoRevenda");
         }
     }
 }
