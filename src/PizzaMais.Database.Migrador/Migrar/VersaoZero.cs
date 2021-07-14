@@ -15,7 +15,12 @@ namespace PizzaMais.Database.Migrador.Migrar
                 .AddUnidadeMedida()
                 .AddProdutoRevenda()
                 .AddPizza()
-                .AddPizzaIngrediente();
+                .AddPizzaIngrediente()
+                .AddCliente()
+                .AddEndereco()
+                .AddClienteEndereco()
+                .AddTelefone()
+                .AddClienteTelefone();
         }
 
         public override void Down()
@@ -27,6 +32,11 @@ namespace PizzaMais.Database.Migrador.Migrar
             Delete.Table("ProdutoRevenda");
             Delete.Table("Pizza");
             Delete.Table("PizzaIngrediente");
+            Delete.Table("Cliente");
+            Delete.Table("Endereco");
+            Delete.Table("ClienteEndereco");
+            Delete.Table("Telefone");
+            Delete.Table("ClienteTelefone");
         }
     }
 }
