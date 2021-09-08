@@ -1,0 +1,54 @@
+version: "3.7"
+
+services:
+  rabbitmq:
+    container_name: dev_rabbit
+    hostname: rabbit
+    image: rabbitmq:3-management
+    environment:
+       - RABBITMQ_DEFAULT_USER=user
+       - RABBITMQ_DEFAULT_PASS=user
+    ports:
+       - "5672:5672"
+       - "15672:15672"
+       
+  postgres:
+    image: postgres
+    environment:
+      POSTGRES_PASSWORD: "sa"
+    ports:
+      - "15432:5432"
+    volumes:
+      - /home/renatogroffe/Desenvolvimento/Docker-Compose/PostgreSQL:/var/lib/postgresql/data 
+    networks:
+      - postgres-network
+      
+  pgadmin:
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: "anderson.patrignani@gmail.com"
+      PGADMIN_DEFAULT_PASSWORD: "sa"
+    ports:
+      - "16543:80"
+    depends_on:
+      - postgres
+    networks:
+      - postgres-network
+      
+  portainer:
+    image: portainer/portainer
+    command: -H unix:///var/run/docker.sock
+    restart: always
+    ports:
+      - 9001:9000
+      - 8000:8000
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - portainer_data:/data
+      
+networks: 
+  postgres-network:
+    driver: bridge
+
+volumes:
+  portainer_data:
