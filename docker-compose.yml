@@ -51,8 +51,6 @@ services:
       MONGO_INITDB_ROOT_PASSWORD: rootpassword
     ports:
       - 27017:27017
-    volumes:
-      - /C/Mine/mongoData:/data/db
 
   mongo_express:
     image: mongo-express:0.54.0
