@@ -5,6 +5,7 @@ services:
     container_name: rabbitmq_container
     hostname: rabbit
     image: rabbitmq:3-management
+    restart: always
     environment:
        - RABBITMQ_DEFAULT_USER=user
        - RABBITMQ_DEFAULT_PASS=user
@@ -46,6 +47,7 @@ services:
       
   mongo_db:
     image: mongo:4.2.12
+    restart: always
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: rootpassword
@@ -54,6 +56,7 @@ services:
 
   mongo_express:
     image: mongo-express:0.54.0
+    restart: always
     environment:
       - ME_CONFIG_OPTIONS_EDITORTHEME=default
       - ME_CONFIG_MONGODB_SERVER=mongo_db
